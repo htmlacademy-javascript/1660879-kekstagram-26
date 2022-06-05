@@ -5,15 +5,8 @@
 */
 
 const getRandomIntInclusive = (min, max) => {
-  if (min < 0 || max < 0) {
-    return false;
-    //console.log('Ошибка! Диапазон может быть только положительный')
-    //почему линт ругается на консоль? в тренажерах сообщения в консоль выводим постоянно, а тут не пропускает.
-  }
-
-  if (max <= min) {
-    return false;
-    //console.log('Ошибка! Верхний предел диапазона должен быть больше, чем нижний!')
+  if (min < 0 || max < 0 || max <= min) {
+    return -1;
   } else {
     min = Math.ceil(min);
     max = Math.floor(max);
