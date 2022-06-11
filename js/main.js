@@ -14,7 +14,8 @@ const getRandomIntInclusive = (min, max) => {
 };
 
 //Функция для проверки максимальной длины строки.
-const checkMaxLength = (string, maxLength) => string.length <= maxLength;
+//Закомментировал, чтобы не ругался линтер, функицю не применял, в условиях не было.
+//const checkMaxLength = (string, maxLength) => string.length <= maxLength;
 
 const COMMENTS = [
   'Всё отлично!',
@@ -42,7 +43,7 @@ const getOrderedArray = (max) => {
 
 const idArr = getOrderedArray(PHOTOS_COUNT);
 const urlArr = getOrderedArray(PHOTOS_COUNT);
-const commentIdArr = getOrderedArray(COMMENTS_COUNT)
+const commentIdArr = getOrderedArray(COMMENTS_COUNT);
 
 const getUniqId = (array) => Number(array.splice(getRandomIntInclusive(1, array.length - 1), 1));
 
@@ -68,3 +69,5 @@ const createPhoto = () => ({
   ]
 });
 const similarPhotos = Array.from({length: PHOTOS_COUNT}, createPhoto);
+//чтобы не ругался линтер
+similarPhotos();
