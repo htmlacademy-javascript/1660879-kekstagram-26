@@ -16,14 +16,14 @@ const createPhoto = () => ({
     {
       id: getUniqId(commentIds),
       avatar: `img/avatar-${getRandomIntInclusive(1, AVATARS_COUNT)}.svg`,
-      message: COMMENTS[getRandomIntInclusive(0, COMMENTS.length)],
-      name: NAMES[getRandomIntInclusive(0, NAMES.length)],
+      message: COMMENTS[getRandomIntInclusive(0, COMMENTS.length-1)],
+      name: NAMES[getRandomIntInclusive(0, NAMES.length-1)],
     },
     {
       id: getUniqId(commentIds),
       avatar: `img/avatar-${getRandomIntInclusive(1, AVATARS_COUNT)}.svg`,
-      message: COMMENTS[getRandomIntInclusive(0, COMMENTS.length)],
-      name: NAMES[getRandomIntInclusive(0, NAMES.length)],
+      message: COMMENTS[getRandomIntInclusive(0, COMMENTS.length-1)],
+      name: NAMES[getRandomIntInclusive(0, NAMES.length-1)],
     },
   ]
 });
