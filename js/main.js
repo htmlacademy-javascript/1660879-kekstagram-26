@@ -1,2 +1,2 @@
 import './renderSmall.js';
-import './renderFull.js';
+import './openFullImage.js';
