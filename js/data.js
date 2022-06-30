@@ -24,7 +24,79 @@ const createPhoto = () => ({
       avatar: `img/avatar-${getRandomIntInclusive(1, AVATARS_COUNT)}.svg`,
       message: COMMENTS[getRandomIntInclusive(0, COMMENTS.length-1)],
       name: NAMES[getRandomIntInclusive(0, NAMES.length-1)],
+    },//тут было всего 2, сделал больше для теста
+    {
+      id: getUniqId(commentIds),
+      avatar: `img/avatar-${getRandomIntInclusive(1, AVATARS_COUNT)}.svg`,
+      message: COMMENTS[getRandomIntInclusive(0, COMMENTS.length-1)],
+      name: NAMES[getRandomIntInclusive(0, NAMES.length-1)],
     },
+    {
+      id: getUniqId(commentIds),
+      avatar: `img/avatar-${getRandomIntInclusive(1, AVATARS_COUNT)}.svg`,
+      message: COMMENTS[getRandomIntInclusive(0, COMMENTS.length-1)],
+      name: NAMES[getRandomIntInclusive(0, NAMES.length-1)],
+    },
+    {
+      id: getUniqId(commentIds),
+      avatar: `img/avatar-${getRandomIntInclusive(1, AVATARS_COUNT)}.svg`,
+      message: COMMENTS[getRandomIntInclusive(0, COMMENTS.length-1)],
+      name: NAMES[getRandomIntInclusive(0, NAMES.length-1)],
+    },
+    {
+      id: getUniqId(commentIds),
+      avatar: `img/avatar-${getRandomIntInclusive(1, AVATARS_COUNT)}.svg`,
+      message: COMMENTS[getRandomIntInclusive(0, COMMENTS.length-1)],
+      name: NAMES[getRandomIntInclusive(0, NAMES.length-1)],
+    },
+    {
+      id: getUniqId(commentIds),
+      avatar: `img/avatar-${getRandomIntInclusive(1, AVATARS_COUNT)}.svg`,
+      message: COMMENTS[getRandomIntInclusive(0, COMMENTS.length-1)],
+      name: NAMES[getRandomIntInclusive(0, NAMES.length-1)],
+    },
+    {
+      id: getUniqId(commentIds),
+      avatar: `img/avatar-${getRandomIntInclusive(1, AVATARS_COUNT)}.svg`,
+      message: COMMENTS[getRandomIntInclusive(0, COMMENTS.length-1)],
+      name: NAMES[getRandomIntInclusive(0, NAMES.length-1)],
+    },
+    {
+      id: getUniqId(commentIds),
+      avatar: `img/avatar-${getRandomIntInclusive(1, AVATARS_COUNT)}.svg`,
+      message: COMMENTS[getRandomIntInclusive(0, COMMENTS.length-1)],
+      name: NAMES[getRandomIntInclusive(0, NAMES.length-1)],
+    },
+    {
+      id: getUniqId(commentIds),
+      avatar: `img/avatar-${getRandomIntInclusive(1, AVATARS_COUNT)}.svg`,
+      message: COMMENTS[getRandomIntInclusive(0, COMMENTS.length-1)],
+      name: NAMES[getRandomIntInclusive(0, NAMES.length-1)],
+    },
+    {
+      id: getUniqId(commentIds),
+      avatar: `img/avatar-${getRandomIntInclusive(1, AVATARS_COUNT)}.svg`,
+      message: COMMENTS[getRandomIntInclusive(0, COMMENTS.length-1)],
+      name: NAMES[getRandomIntInclusive(0, NAMES.length-1)],
+    },
+    {
+      id: getUniqId(commentIds),
+      avatar: `img/avatar-${getRandomIntInclusive(1, AVATARS_COUNT)}.svg`,
+      message: COMMENTS[getRandomIntInclusive(0, COMMENTS.length-1)],
+      name: NAMES[getRandomIntInclusive(0, NAMES.length-1)],
+    },
+    {
+      id: getUniqId(commentIds),
+      avatar: `img/avatar-${getRandomIntInclusive(1, AVATARS_COUNT)}.svg`,
+      message: COMMENTS[getRandomIntInclusive(0, COMMENTS.length-1)],
+      name: NAMES[getRandomIntInclusive(0, NAMES.length-1)],
+    },
+    {
+      id: getUniqId(commentIds),
+      avatar: `img/avatar-${getRandomIntInclusive(1, AVATARS_COUNT)}.svg`,
+      message: COMMENTS[getRandomIntInclusive(0, COMMENTS.length-1)],
+      name: NAMES[getRandomIntInclusive(0, NAMES.length-1)],
+    }
   ]
 });
 

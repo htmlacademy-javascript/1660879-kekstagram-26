@@ -1,5 +1,5 @@
 import {isEscapeKey} from './util.js';
-import {validateHashtags} from './form-validation.js';
+import {validateHashtag} from './form-validation.js';
 
 const form = document.querySelector('.img-upload__form');
 const closeFormButton = form.querySelector('#upload-cancel');
@@ -37,7 +37,7 @@ function closeForm () {
   uploadFile.value = '';
   hashtagInput.value = '';
   commentInput.value = '';
-  validateHashtags();
+  validateHashtag();
 }
 
 uploadFile.addEventListener('change', () => {

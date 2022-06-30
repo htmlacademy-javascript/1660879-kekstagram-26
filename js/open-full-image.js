@@ -14,16 +14,16 @@ const onImageEscKeydown = (evt) => {
 
 const openFullImage = () => {
   fullImageWindow.classList.remove('hidden');
-  fullImageWindow.querySelector('.social__comment-count').classList.add('hidden');
-  fullImageWindow.querySelector('.comments-loader').classList.add('hidden');
+  fullImageWindow.querySelector('.social__comment-count').classList.add('hidden');//нужно будет убрать
+  fullImageWindow.querySelector('.comments-loader').classList.add('hidden');//Тоже нужно убрать
   document.body.classList.add('modal-open');
   document.addEventListener('keydown', onImageEscKeydown);
 };
 
 function closeFullImage () {
   fullImageWindow.classList.add('hidden');
-  fullImageWindow.querySelector('.social__comment-count').classList.remove('hidden');
-  fullImageWindow.querySelector('.comments-loader').classList.remove('hidden');
+  fullImageWindow.querySelector('.social__comment-count').classList.remove('hidden');//нужно будет убрать
+  fullImageWindow.querySelector('.comments-loader').classList.remove('hidden');//тоже нужно убрать
   document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', onImageEscKeydown);
 }
