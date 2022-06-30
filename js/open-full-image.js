@@ -1,5 +1,5 @@
 import {isEscapeKey} from './util.js';
-import {renderFullImage} from './renderFull.js';
+import {renderFullImage} from './render-full.js';
 
 const fullImageWindow = document.querySelector('.big-picture');
 const cancelButton = fullImageWindow.querySelector('.cancel');

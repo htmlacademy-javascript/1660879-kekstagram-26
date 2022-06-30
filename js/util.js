@@ -28,6 +28,7 @@ export const getOrderedArray = (max) => {
 //Функция для выбора случайного числа из созданного массива и "выбрасывания" этого числа из него
 export const getUniqId = (arr) => Number(arr.splice(getRandomIntInclusive(1, arr.length - 1), 1));
 
+//Функция, проверяющая нажат ли Escape
 const isEscapeKey = (evt) => evt.code === 'Escape';
 
 export {isEscapeKey};
