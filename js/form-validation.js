@@ -1,7 +1,8 @@
 import {checkMaxLength} from './util.js';
 import {COMMENT_LENGTH} from './constants.js';
 
-const re = /^#[A-Za-zА-Яа-яЁё0-9]{1,19}$/;
+const HashtagRegularExpression = /^#[A-Za-zА-Яа-яЁё0-9]{1,19}$/;
+
 const form = document.querySelector('.img-upload__form');
 const hashtagField = form.querySelector('.text__hashtags');
 const commentField = form.querySelector('.text__description');
@@ -12,34 +13,42 @@ const pristine = new Pristine(form, {
   errorTextClass: 'form__error'
 }, true);
 
+
 const validateHashtag = (inputValue) => {
   const arr = inputValue.split(' ');
-  const isHashtag = () => arr.every((element) => re.test(element));
-  const isEmpty = () => arr[0] === '';
-  return isHashtag() || isEmpty();
+  return arr.every((element) => HashtagRegularExpression.test(element)) || arr[0] === '';
 };
+
 
 const validateHashtagDuplicates = (inputValue) => {
   const arr = inputValue.split(' ');
   const valuesObj = {};
+
   for (let i = 0; i < arr.length; i++) {
     const value = arr[i].toLowerCase();
+
     if (value in valuesObj) {
       return false;
     }
+
     valuesObj[value] = true;
+
   }
   return true;
 };
+
 
 const validateHashtagsLength = (inputValue) => {
   const arr = inputValue.split(' ');
   return arr.length <= 5;
 };
 
+
 const validateComment = (inputValue) => checkMaxLength(inputValue, COMMENT_LENGTH);
 
+
 const getCommentErrorText = () => `Длина комментария не должна быть больше ${COMMENT_LENGTH} символов!`;
+
 
 pristine.addValidator(hashtagField, validateHashtag, 'Хэштег должен начинаться с символа #, не должен иметь спецсимволов, не состоять только из #, длина не больше 20 символов!');
 pristine.addValidator(hashtagField, validateHashtagsLength, 'Не больше пяти хэштегов!');

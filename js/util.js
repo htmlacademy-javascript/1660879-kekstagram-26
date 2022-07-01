@@ -29,6 +29,6 @@ export const getOrderedArray = (max) => {
 export const getUniqId = (arr) => Number(arr.splice(getRandomIntInclusive(1, arr.length - 1), 1));
 
 //Функция, проверяющая нажат ли Escape
-const isEscapeKey = (evt) => evt.code === 'Escape';
+const isEscapeKey = (evt) => evt.code === 'Escape' || 'Esc';
 
 export {isEscapeKey};
