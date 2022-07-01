@@ -10,7 +10,8 @@ const COMMENTS = [
 const NAMES = ['Милана', 'Владимир', 'Кирилл', 'Виктория', 'Вероника', 'Алиса', 'Каролина', 'Злата', 'Тимофей', 'Амелия', 'Иван', 'Мирослав', 'Валентина', 'Ян', 'Алина', 'Дмитрий', 'Максим', 'Адам', 'Арина', 'Алёна'];
 
 const PHOTOS_COUNT = 25;
-const COMMENTS_COUNT = 300;
+const COMMENTS_COUNT = 1250;
 const AVATARS_COUNT = 6;
+const COMMENT_LENGTH = 140;
 
-export {COMMENTS, NAMES, PHOTOS_COUNT, COMMENTS_COUNT, AVATARS_COUNT};
+export {COMMENTS, NAMES, PHOTOS_COUNT, COMMENTS_COUNT, AVATARS_COUNT, COMMENT_LENGTH};
