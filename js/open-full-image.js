@@ -1,9 +1,11 @@
 import {isEscapeKey} from './util.js';
-import {renderFullImage} from './render-full.js';
+import {renderFullImage, renderSocialComments, clearCounter, renderNewComments} from './render-full.js';
 
 const fullImageWindow = document.querySelector('.big-picture');
 const cancelButton = fullImageWindow.querySelector('.cancel');
 const picturesBlock = document.querySelector('.pictures');
+const socialCommentsLoader = fullImageWindow.querySelector('.comments-loader');
+
 
 const onImageEscKeydown = (evt) => {
   if (isEscapeKey(evt)) {
@@ -12,29 +14,38 @@ const onImageEscKeydown = (evt) => {
   }
 };
 
+
 const openFullImage = () => {
   fullImageWindow.classList.remove('hidden');
-  fullImageWindow.querySelector('.social__comment-count').classList.add('hidden');//нужно будет убрать
-  fullImageWindow.querySelector('.comments-loader').classList.add('hidden');//Тоже нужно убрать
   document.body.classList.add('modal-open');
+
   document.addEventListener('keydown', onImageEscKeydown);
+
+  socialCommentsLoader.classList.remove('hidden');
+  socialCommentsLoader.addEventListener ('click', renderNewComments);
 };
+
 
 function closeFullImage () {
   fullImageWindow.classList.add('hidden');
-  fullImageWindow.querySelector('.social__comment-count').classList.remove('hidden');//нужно будет убрать
-  fullImageWindow.querySelector('.comments-loader').classList.remove('hidden');//тоже нужно убрать
   document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', onImageEscKeydown);
+  socialCommentsLoader.removeEventListener('click', renderNewComments);
+  clearCounter();
 }
+
 
 picturesBlock.addEventListener('click', (evt) => {
   if (evt.target.classList.contains('picture__img')) {
     openFullImage();
     renderFullImage(evt);
+    renderSocialComments(evt);
   }
 });
+
 
 cancelButton.addEventListener('click', () => {
   closeFullImage();
 });
+
+
