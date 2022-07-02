@@ -19,7 +19,7 @@ const createPhoto = () => ({
   url: `photos/${getUniqId(urls)}.jpg`,
   description: 'Еще одна удачная фотография',
   likes: getRandomIntInclusive(15, 200),
-  comments: Array.from({length: getRandomIntInclusive(2, 50)}, createComments)
+  comments: Array.from({length: getRandomIntInclusive(1, 14)}, createComments)
 });
 
 export const similarPhotos = Array.from({length: PHOTOS_COUNT}, createPhoto);

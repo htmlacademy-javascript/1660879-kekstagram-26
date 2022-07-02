@@ -1,7 +1,5 @@
 import {checkMaxLength} from './util.js';
-import {COMMENT_LENGTH} from './constants.js';
-
-const HashtagRegularExpression = /^#[A-Za-zА-Яа-яЁё0-9]{1,19}$/;
+import {COMMENT_LENGTH, HASH_TAG_REGULAR_EXPRESSION} from './constants.js';
 
 const form = document.querySelector('.img-upload__form');
 const hashtagField = form.querySelector('.text__hashtags');
@@ -16,7 +14,7 @@ const pristine = new Pristine(form, {
 
 const validateHashtag = (inputValue) => {
   const arr = inputValue.split(' ');
-  return arr.every((element) => HashtagRegularExpression.test(element)) || arr[0] === '';
+  return arr.every((element) => HASH_TAG_REGULAR_EXPRESSION.test(element)) || arr[0] === '';
 };
 
 
