@@ -29,6 +29,6 @@ export const getOrderedArray = (max) => {
 export const getUniqId = (arr) => Number(arr.splice(getRandomIntInclusive(1, arr.length - 1), 1));
 
 //Функция, проверяющая нажат ли Escape
-const isEscapeKey = (evt) => evt.code === 'Escape' || 'Esc'; //при добавленном Артуром Esc теперь закрывается при нажатии любой клавиши
+const isEscapeKey = (evt) => evt.code === 'Escape' || evt.code === 'Esc'; //при добавленном Артуром Esc теперь закрывается при нажатии любой клавиши
 
 export {isEscapeKey};
