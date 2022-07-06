@@ -1,5 +1,7 @@
 import {isEscapeKey} from './util.js';
 import {validateHashtag} from './form-validation.js';
+import {refreshScale} from './edit-image.js';
+
 
 const form = document.querySelector('.img-upload__form');
 const closeFormButton = form.querySelector('#upload-cancel');
@@ -26,6 +28,7 @@ const openForm = () => {
   document.addEventListener('keydown', onFormEscKeydown);
   hashtagInput.addEventListener('keydown', onInputEscKeydown);
   commentInput.addEventListener('keydown', onInputEscKeydown);
+  refreshScale();
 };
 
 function closeForm () {
