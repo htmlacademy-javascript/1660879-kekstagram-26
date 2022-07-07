@@ -5,7 +5,7 @@ const form = document.querySelector('.img-upload__form');
 const hashtagField = form.querySelector('.text__hashtags');
 const commentField = form.querySelector('.text__description');
 
-const pristine = new Pristine(form, {
+export const pristine = new Pristine(form, {
   classTo: 'img-upload__field-wrapper',
   errorTextParent: 'img-upload__field-wrapper',
   errorTextClass: 'form__error'
@@ -17,7 +17,7 @@ const validateHashtag = (inputValue) => {
   return arr.every((element) => HASH_TAG_REGULAR_EXPRESSION.test(element)) || arr[0] === '';
 };
 
-
+//в будущем надо добавить проверку на лишние пробелы, т.к. пробелы валидатор считает хэштегами
 const validateHashtagDuplicates = (inputValue) => {
   const arr = inputValue.split(' ');
   const valuesObj = {};
@@ -53,9 +53,11 @@ pristine.addValidator(hashtagField, validateHashtagsLength, 'Не больше �
 pristine.addValidator(hashtagField, validateHashtagDuplicates, 'Хэштеги не должны повторяться!');
 pristine.addValidator(commentField, validateComment, getCommentErrorText);
 
+
 form.addEventListener('submit', (evt) => {
   evt.preventDefault();
   pristine.validate();
 });
+
 
 export {validateHashtag};
