@@ -1,4 +1,5 @@
 import {DEFAULT_SCALE_AMOUNT, MIN_SCALE_AMOUNT, MAX_SCALE_AMOUNT} from './constants.js';
+
 const scaleControl = document.querySelector('.scale__control--value');
 const scaleSmallerButton = document.querySelector('.scale__control--smaller');
 const scaleBiggerButton = document.querySelector('.scale__control--bigger');
@@ -9,8 +10,23 @@ const valueElement = document.querySelector('.effect-level__value');
 let scaleAmount;
 let selectedEffect;
 
+export const hideSlider = () => {
+  sliderElement.classList.add('hidden');
+};
 
-export const refreshScale = () => {
+
+const showSlider = () => {
+  sliderElement.classList.remove('hidden');
+};
+
+
+export const setNoEffect = () => {
+  imagePreview.className = '';
+  imagePreview.style.filter = '';
+};
+
+
+export const setDefaultScale = () => {
   scaleAmount = DEFAULT_SCALE_AMOUNT;
   imagePreview.style.transform = `scale(${scaleAmount/100})`;
   scaleControl.value =  `${scaleAmount}%`;
@@ -18,9 +34,7 @@ export const refreshScale = () => {
 
 
 const addScale = () => {
-  if (scaleAmount >= MAX_SCALE_AMOUNT) {
-    scaleAmount += 0;
-  } else {
+  if (scaleAmount < MAX_SCALE_AMOUNT) {
     scaleAmount += 25;
   }
 
@@ -30,9 +44,7 @@ const addScale = () => {
 
 
 const removeScale = () => {
-  if (scaleAmount <= MIN_SCALE_AMOUNT) {
-    scaleAmount -= 0;
-  } else {
+  if (scaleAmount > MIN_SCALE_AMOUNT) {
     scaleAmount -= 25;
   }
 
@@ -46,79 +58,101 @@ scaleSmallerButton.addEventListener('click', removeScale);
 scaleBiggerButton.addEventListener('click', addScale);
 
 
+const setChromeEffect = () => {
+  showSlider();
+  selectedEffect = 'grayscale';
+  sliderElement.noUiSlider.updateOptions({
+    range: {
+      min: 0,
+      max: 1,
+    },
+    start: 1,
+    step: 0.1
+  });
+};
+
+const setSepiaEffect = () => {
+  showSlider();
+  selectedEffect = 'sepia';
+  sliderElement.noUiSlider.updateOptions({
+    range: {
+      min: 0,
+      max: 1,
+    },
+    start: 1,
+    step: 0.1
+  });
+};
+
+const setMarvinEffect = () => {
+  showSlider();
+  selectedEffect = 'invert';
+  sliderElement.noUiSlider.updateOptions({
+    range: {
+      min: 0,
+      max: 100,
+    },
+    start: 100,
+    step: 1
+  });
+};
+
+const setPhobosEffect = () => {
+  showSlider();
+  selectedEffect = 'blur';
+  sliderElement.noUiSlider.updateOptions({
+    range: {
+      min: 0,
+      max: 3,
+    },
+    start: 3,
+    step: 0.1,
+  });
+};
+
+const setHeatEffect = () => {
+  showSlider();
+  selectedEffect = 'brightness';
+  sliderElement.noUiSlider.updateOptions({
+    range: {
+      min: 1,
+      max: 3,
+    },
+    start: 3,
+    step: 0.1
+  });
+};
+
+
 for (const effectButton of effectButtons) {
   effectButton.addEventListener('click', () => {
 
     switch (effectButton.value) {
 
-      case 'none' : sliderElement.classList.add('hidden'); break;
+      case 'none' :
+        hideSlider(); break;
 
       case 'chrome' :
-        selectedEffect = 'grayscale';
-        sliderElement.classList.remove('hidden');
-        sliderElement.noUiSlider.updateOptions({
-          range: {
-            min: 0,
-            max: 1,
-          },
-          start: 1,
-          step: 0.1
-        }); break;
+        setChromeEffect(); break;
 
       case 'sepia' :
-        selectedEffect = 'sepia';
-        sliderElement.classList.remove('hidden');
-        sliderElement.noUiSlider.updateOptions({
-          range: {
-            min: 0,
-            max: 1,
-          },
-          start: 1,
-          step: 0.1
-        }); break;
+        setSepiaEffect(); break;
 
       case 'marvin' :
-        selectedEffect = 'invert';
-        sliderElement.classList.remove('hidden');
-        sliderElement.noUiSlider.updateOptions({
-          range: {
-            min: 0,
-            max: 100,
-          },
-          start: 100,
-          step: 1
-        }); break;
+        setMarvinEffect(); break;
 
       case 'phobos' :
-        selectedEffect = 'blur';
-        sliderElement.classList.remove('hidden');
-        sliderElement.noUiSlider.updateOptions({
-          range: {
-            min: 0,
-            max: 3,
-          },
-          start: 3,
-          step: 0.1,
-        }); break;
+        setPhobosEffect(); break;
 
       case 'heat' :
-        selectedEffect = 'brightness';
-        sliderElement.classList.remove('hidden');
-        sliderElement.noUiSlider.updateOptions({
-          range: {
-            min: 1,
-            max: 3,
-          },
-          start: 3,
-          step: 0.1
-        }); break;
+        setHeatEffect(); break;
     }
 
-    imagePreview.className = '';
-    imagePreview.style.filter = '';
+    setNoEffect();
     imagePreview.classList.add(`effects__preview--${effectButton.value}`);
   });
 }
+
 
 noUiSlider.create(sliderElement, {
   range: {
@@ -128,8 +162,6 @@ noUiSlider.create(sliderElement, {
   start: 100,
   connect: 'lower'
 });
-
-sliderElement.classList.add('hidden');
 
 
 sliderElement.noUiSlider.on('update', () => {
