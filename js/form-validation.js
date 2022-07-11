@@ -1,4 +1,4 @@
-import {checkMaxLength} from './util.js';
+import {checkMaxLength, showAlert} from './util.js';
 import {COMMENT_LENGTH, HASH_TAG_REGULAR_EXPRESSION} from './constants.js';
 
 const form = document.querySelector('.img-upload__form');
@@ -53,11 +53,31 @@ pristine.addValidator(hashtagField, validateHashtagsLength, 'Не больше �
 pristine.addValidator(hashtagField, validateHashtagDuplicates, 'Хэштеги не должны повторяться!');
 pristine.addValidator(commentField, validateComment, getCommentErrorText);
 
+export const setUserFormSubmit = (onSuccess) => {
+  form.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    const isValid = pristine.validate();
+    if (isValid) {
+      const formData = new FormData(evt.target);
 
-form.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-  pristine.validate();
-});
-
+      fetch(
+        'https://26.javascript.pages.academy/kekstagram', {
+          method: 'POST',
+          body: formData
+        }
+      )
+        .then((response) => {
+          if (response.ok) {
+            onSuccess();
+          } else {
+            showAlert('Не удалось отправить форму. Попробуйте ещё раз');
+          }
+        })
+        .catch(() => {
+          showAlert('Не удалось отправить форму. Попробуйте ещё раз');
+        });
+    }
+  });
+};
 
 export {validateHashtag};

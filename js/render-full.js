@@ -1,4 +1,6 @@
-import {similarPhotos} from './data.js';
+// import {similarPhotos} from './data.js';
+import { photoData } from './api.js';
+
 import {INITIAL_COMMENTS_NUMBER} from './constants.js';
 
 const fullImageWindow = document.querySelector('.big-picture');
@@ -18,7 +20,7 @@ const addSocialCounters = (obj) => {
 
 
 export const renderFullImage = (evt) => {
-  findedObject = similarPhotos.find((item) => evt.target.src.includes(item.url));
+  findedObject = photoData.find((item) => evt.target.src.includes(item.url));
   fullImage.src = evt.target.src;
   fullImage.alt = evt.target.alt;
   fullImageWindow.querySelector('.social__caption').textContent = findedObject.description;

@@ -32,7 +32,7 @@ const resetInputs = () => {
 };
 
 
-const openForm = () => {
+export const openForm = () => {
   form.querySelector('.img-upload__overlay').classList.remove('hidden');
   document.body.classList.add('modal-open');
   document.addEventListener('keydown', onFormEscKeydown);
@@ -44,7 +44,7 @@ const openForm = () => {
 };
 
 
-function closeForm () {
+export function closeForm () {
   form.querySelector('.img-upload__overlay').classList.add('hidden');
   document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', onFormEscKeydown);
