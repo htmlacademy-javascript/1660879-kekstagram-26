@@ -1,3 +1,5 @@
+import { ALERT_SHOW_TIME } from './constants.js';
+
 /*
 Функция, возвращающая случайное целое число из переданного диапазона включительно
 Источник: https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Math/random
@@ -29,6 +31,29 @@ export const getOrderedArray = (max) => {
 export const getUniqId = (arr) => Number(arr.splice(getRandomIntInclusive(1, arr.length - 1), 1));
 
 //Функция, проверяющая нажат ли Escape
-const isEscapeKey = (evt) => evt.code === 'Escape' || evt.code === 'Esc'; //при добавленном Артуром Esc теперь закрывается при нажатии любой клавиши
+export const isEscapeKey = (evt) => evt.code === 'Escape' || evt.code === 'Esc';
 
-export {isEscapeKey};
+//Функция для отрисовки алерта
+export const showAlert = (message) => {
+  const alertContainer = document.createElement('div');
+  alertContainer.style.zIndex = '100';
+  alertContainer.style.position = 'absolute';
+  alertContainer.style.left = '0';
+  alertContainer.style.top = '0';
+  alertContainer.style.right = '0';
+  alertContainer.style.padding = '10px 3px';
+  alertContainer.style.fontSize = '20px';
+  alertContainer.style.textAlign = 'center';
+  alertContainer.style.backgroundColor = 'gold';
+
+  alertContainer.textContent = message;
+
+  document.body.append(alertContainer);
+
+
+  setTimeout(() => {
+    alertContainer.remove();
+  }, ALERT_SHOW_TIME);
+};
+
+

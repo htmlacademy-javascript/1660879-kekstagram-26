@@ -1,9 +1,14 @@
-import {checkMaxLength} from './util.js';
-import {COMMENT_LENGTH, HASH_TAG_REGULAR_EXPRESSION} from './constants.js';
+import { sendData } from './api.js';
+import { checkMaxLength } from './util.js';
+import { COMMENT_LENGTH, HASH_TAG_REGULAR_EXPRESSION } from './constants.js';
+import { closeForm, showSuccessAlert, showErrorAlert } from './open-form.js';
+
 
 const form = document.querySelector('.img-upload__form');
 const hashtagField = form.querySelector('.text__hashtags');
 const commentField = form.querySelector('.text__description');
+const submitButton = form.querySelector('.img-upload__submit');
+
 
 export const pristine = new Pristine(form, {
   classTo: 'img-upload__field-wrapper',
@@ -54,10 +59,35 @@ pristine.addValidator(hashtagField, validateHashtagDuplicates, 'Хэштеги �
 pristine.addValidator(commentField, validateComment, getCommentErrorText);
 
 
-form.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-  pristine.validate();
-});
+const blockSubmitButton = () => {
+  submitButton.disabled = true;
+};
 
 
-export {validateHashtag};
+export const unblockSubmitButton = () => {
+  submitButton.disabled = false;
+};
+
+
+const onSuccessSend = () => {
+  closeForm();
+  showSuccessAlert();
+};
+
+
+const onErrorSend = () => {
+  showErrorAlert();
+};
+
+
+export const setUserFormSubmit = () => {
+  form.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+
+    const isValid = pristine.validate();
+    if (isValid) {
+      blockSubmitButton();
+      sendData(onSuccessSend, onErrorSend, new FormData(evt.target));
+    }
+  });
+};
