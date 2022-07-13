@@ -1,5 +1,3 @@
-// import {similarPhotos} from './data.js';
-
 const imageTemplate = document.querySelector('#picture').content;
 const similarPhotosFragment = document.createDocumentFragment();
 const picturesBlock = document.querySelector('.pictures');

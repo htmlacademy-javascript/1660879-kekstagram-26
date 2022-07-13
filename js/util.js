@@ -1,4 +1,4 @@
-import {ALERT_SHOW_TIME} from './constants.js';
+import { ALERT_SHOW_TIME } from './constants.js';
 
 /*
 Функция, возвращающая случайное целое число из переданного диапазона включительно
@@ -31,9 +31,10 @@ export const getOrderedArray = (max) => {
 export const getUniqId = (arr) => Number(arr.splice(getRandomIntInclusive(1, arr.length - 1), 1));
 
 //Функция, проверяющая нажат ли Escape
-const isEscapeKey = (evt) => evt.code === 'Escape' || evt.code === 'Esc';
+export const isEscapeKey = (evt) => evt.code === 'Escape' || evt.code === 'Esc';
 
-const showAlert = (message) => {
+//Функция для отрисовки алерта
+export const showAlert = (message) => {
   const alertContainer = document.createElement('div');
   alertContainer.style.zIndex = '100';
   alertContainer.style.position = 'absolute';
@@ -41,17 +42,18 @@ const showAlert = (message) => {
   alertContainer.style.top = '0';
   alertContainer.style.right = '0';
   alertContainer.style.padding = '10px 3px';
-  alertContainer.style.fontSize = '30px';
+  alertContainer.style.fontSize = '20px';
   alertContainer.style.textAlign = 'center';
-  alertContainer.style.backgroundColor = 'red';
+  alertContainer.style.backgroundColor = 'gold';
 
   alertContainer.textContent = message;
 
   document.body.append(alertContainer);
+
 
   setTimeout(() => {
     alertContainer.remove();
   }, ALERT_SHOW_TIME);
 };
 
-export {isEscapeKey, showAlert};
+

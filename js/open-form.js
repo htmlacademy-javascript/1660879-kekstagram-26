@@ -1,6 +1,6 @@
-import {isEscapeKey} from './util.js';
-import {pristine} from './form-validation.js';
-import {setNoEffect, setDefaultScale, hideSlider} from './edit-image.js';
+import { isEscapeKey } from './util.js';
+import { pristine, unblockSubmitButton } from './form-validation.js';
+import { setNoEffect, setDefaultScale, hideSlider } from './edit-image.js';
 
 
 const form = document.querySelector('.img-upload__form');
@@ -32,7 +32,7 @@ const resetInputs = () => {
 };
 
 
-export const openForm = () => {
+const openForm = () => {
   form.querySelector('.img-upload__overlay').classList.remove('hidden');
   document.body.classList.add('modal-open');
   document.addEventListener('keydown', onFormEscKeydown);
@@ -63,3 +63,85 @@ uploadFile.addEventListener('change', () => {
 closeFormButton.addEventListener('click', () => {
   closeForm();
 });
+
+
+const onSuccessAlertEscKeydown = (evt) => {
+  if (isEscapeKey(evt)) {
+    evt.preventDefault();
+    removeSuccessAlert();
+  }
+};
+
+
+const onErrorAlertEscKeydown = (evt) => {
+  if (isEscapeKey(evt)) {
+    evt.preventDefault();
+    removeErrorAlert();
+    closeForm();
+  }
+};
+
+
+function removeSuccessAlert() {
+  unblockSubmitButton();
+  document.querySelector('.success').remove();
+  document.body.removeEventListener('click', onSuccesAlertClick);
+  document.body.removeEventListener('keydown', onSuccessAlertEscKeydown);
+}
+
+
+function removeErrorAlert() {
+  unblockSubmitButton();
+  document.querySelector('.error').remove();
+  // form.querySelector('.img-upload__overlay').classList.remove('hidden');
+  document.body.removeEventListener('click', onErrorAlertClick);
+  document.body.removeEventListener('keydown', onErrorAlertEscKeydown);
+}
+
+
+function onSuccesAlertClick(evt) {
+  if(evt.target.classList.contains('success') || evt.target.classList.contains('success__button')) {
+    removeSuccessAlert();
+  }
+}
+
+
+function onErrorAlertClick(evt) {
+  if (evt.target.classList.contains('error')) {
+    removeErrorAlert();
+    closeForm();
+  }
+}
+
+
+export const showSuccessAlert = () => {
+  const successTemplate = document.querySelector('#success').content;
+  const newSuccessMessage = successTemplate.cloneNode(true);
+
+  document.body.addEventListener('click', onSuccesAlertClick);
+
+  document.body.addEventListener('keydown', onSuccessAlertEscKeydown);
+
+  document.body.appendChild(newSuccessMessage);
+};
+
+
+export const showErrorAlert = () => {
+  const errorTemplate = document.querySelector('#error').content;
+  const newErrorMessage = errorTemplate.cloneNode(true);
+
+  const closeErrorAlertButton = newErrorMessage.querySelector('.error__button');
+
+  closeErrorAlertButton.addEventListener('click', () => {
+    removeErrorAlert();
+    uploadFile.click();
+  });
+
+  document.body.addEventListener('click', onErrorAlertClick);
+
+  document.body.addEventListener('keydown', onErrorAlertEscKeydown);
+
+  document.body.appendChild(newErrorMessage);
+
+  document.querySelector('.error').style.zIndex = '100';
+};

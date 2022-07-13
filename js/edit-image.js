@@ -1,4 +1,4 @@
-import {DEFAULT_SCALE_AMOUNT, MIN_SCALE_AMOUNT, MAX_SCALE_AMOUNT} from './constants.js';
+import { DEFAULT_SCALE_AMOUNT, MIN_SCALE_AMOUNT, MAX_SCALE_AMOUNT } from './constants.js';
 
 const scaleControl = document.querySelector('.scale__control--value');
 const scaleSmallerButton = document.querySelector('.scale__control--smaller');
@@ -9,6 +9,7 @@ const sliderElement = document.querySelector('.effect-level__slider');
 const valueElement = document.querySelector('.effect-level__value');
 let scaleAmount;
 let selectedEffect;
+
 
 export const hideSlider = () => {
   sliderElement.classList.add('hidden');

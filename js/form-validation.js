@@ -1,9 +1,14 @@
-import {checkMaxLength, showAlert} from './util.js';
-import {COMMENT_LENGTH, HASH_TAG_REGULAR_EXPRESSION} from './constants.js';
+import { sendData } from './api.js';
+import { checkMaxLength } from './util.js';
+import { COMMENT_LENGTH, HASH_TAG_REGULAR_EXPRESSION } from './constants.js';
+import { closeForm, showSuccessAlert, showErrorAlert } from './open-form.js';
+
 
 const form = document.querySelector('.img-upload__form');
 const hashtagField = form.querySelector('.text__hashtags');
 const commentField = form.querySelector('.text__description');
+const submitButton = form.querySelector('.img-upload__submit');
+
 
 export const pristine = new Pristine(form, {
   classTo: 'img-upload__field-wrapper',
@@ -53,31 +58,36 @@ pristine.addValidator(hashtagField, validateHashtagsLength, 'Не больше �
 pristine.addValidator(hashtagField, validateHashtagDuplicates, 'Хэштеги не должны повторяться!');
 pristine.addValidator(commentField, validateComment, getCommentErrorText);
 
-export const setUserFormSubmit = (onSuccess) => {
+
+const blockSubmitButton = () => {
+  submitButton.disabled = true;
+};
+
+
+export const unblockSubmitButton = () => {
+  submitButton.disabled = false;
+};
+
+
+const onSuccessSend = () => {
+  closeForm();
+  showSuccessAlert();
+};
+
+
+const onErrorSend = () => {
+  showErrorAlert();
+};
+
+
+export const setUserFormSubmit = () => {
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
+
     const isValid = pristine.validate();
     if (isValid) {
-      const formData = new FormData(evt.target);
-
-      fetch(
-        'https://26.javascript.pages.academy/kekstagram', {
-          method: 'POST',
-          body: formData
-        }
-      )
-        .then((response) => {
-          if (response.ok) {
-            onSuccess();
-          } else {
-            showAlert('Не удалось отправить форму. Попробуйте ещё раз');
-          }
-        })
-        .catch(() => {
-          showAlert('Не удалось отправить форму. Попробуйте ещё раз');
-        });
+      blockSubmitButton();
+      sendData(onSuccessSend, onErrorSend, new FormData(evt.target));
     }
   });
 };
-
-export {validateHashtag};

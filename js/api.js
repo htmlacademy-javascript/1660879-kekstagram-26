@@ -1,17 +1,30 @@
-import {renderSmallPhotos} from './render-small.js';
-import {closeForm} from './open-form.js';
-import {setUserFormSubmit} from './form-validation.js';
-
-let photoData;
-
-fetch('https://26.javascript.pages.academy/kekstagram/data')
-  .then((response) => response.json())
-  .then((data) => {
-    renderSmallPhotos(data);
-    photoData = data;
-  });
-
-setUserFormSubmit(closeForm);
+export const getData = (onSuccess, onFail) => {
+  fetch('https://26.javascript.pages.academy/kekstagram/data')
+    .then((response) => response.json())
+    .then((data) => {
+      onSuccess(data);
+    })
+    .catch(() => {
+      onFail();
+    });
+};
 
 
-export {photoData};
+export const sendData = (onSuccess, onFail, body) => {
+  fetch(
+    'https://26.javascript.pages.academy/kekstagram', {
+      method: 'POST',
+      body
+    }
+  )
+    .then((response) => {
+      if (response.ok) {
+        onSuccess();
+      } else {
+        onFail();
+      }
+    })
+    .catch(() => {
+      onFail();
+    });
+};

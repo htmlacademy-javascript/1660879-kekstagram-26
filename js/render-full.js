@@ -1,7 +1,5 @@
-// import {similarPhotos} from './data.js';
-import { photoData } from './api.js';
-
-import {INITIAL_COMMENTS_NUMBER} from './constants.js';
+import { photoData } from './main.js';
+import { INITIAL_COMMENTS_NUMBER } from './constants.js';
 
 const fullImageWindow = document.querySelector('.big-picture');
 const fullImage = fullImageWindow.querySelector('.big-picture__img').querySelector('img');
