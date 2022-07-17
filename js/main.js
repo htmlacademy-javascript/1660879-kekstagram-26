@@ -2,15 +2,18 @@ import './open-full-image.js';
 import './edit-image.js';
 import { getData } from './api.js';
 import { showAlert } from './util.js';
-import { renderSmallPhotos } from './render-small.js';
+import { renderAllPhotos } from './render-small.js';
 import { setUserFormSubmit } from './form-validation.js';
+
+const filterBar = document.querySelector('.img-filters');
 
 export let photoData;
 
 
 const onSuccessGet = (data) => {
-  renderSmallPhotos(data);
+  renderAllPhotos(data);
   photoData = data;
+  filterBar.classList.remove('img-filters--inactive');
 };
 
 const onErrorGet = () => {

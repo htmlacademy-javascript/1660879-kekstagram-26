@@ -1,12 +1,8 @@
 export const getData = (onSuccess, onFail) => {
   fetch('https://26.javascript.pages.academy/kekstagram/data')
     .then((response) => response.json())
-    .then((data) => {
-      onSuccess(data);
-    })
-    .catch(() => {
-      onFail();
-    });
+    .then(onSuccess)
+    .catch(onFail);
 };
 
 
@@ -24,7 +20,5 @@ export const sendData = (onSuccess, onFail, body) => {
         onFail();
       }
     })
-    .catch(() => {
-      onFail();
-    });
+    .catch(onFail);
 };
