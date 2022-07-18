@@ -1,6 +1,7 @@
 import { isEscapeKey } from './util.js';
 import { pristine, unblockSubmitButton } from './form-validation.js';
 import { setNoEffect, setDefaultScale, hideSlider } from './edit-image.js';
+import { FILE_TYPES } from './constants.js';
 
 
 const form = document.querySelector('.img-upload__form');
@@ -8,6 +9,7 @@ const closeFormButton = form.querySelector('#upload-cancel');
 const uploadFile = form.querySelector('#upload-file');
 const hashtagInput = form.querySelector('.text__hashtags');
 const commentInput = form.querySelector('.text__description');
+const preview = form.querySelector('.img-upload__preview').querySelector('img');
 
 
 const onFormEscKeydown = (evt) => {
@@ -56,7 +58,13 @@ export function closeForm () {
 
 
 uploadFile.addEventListener('change', () => {
-  openForm();
+  const file = uploadFile.files[0];
+  const fileName = file.name.toLowerCase();
+  const matches = FILE_TYPES.some((item) => fileName.endsWith(item));
+  if (matches) {
+    preview.src = URL.createObjectURL(file);
+    openForm();
+  }
 });
 
 
@@ -93,7 +101,6 @@ function removeSuccessAlert() {
 function removeErrorAlert() {
   unblockSubmitButton();
   document.querySelector('.error').remove();
-  // form.querySelector('.img-upload__overlay').classList.remove('hidden');
   document.body.removeEventListener('click', onErrorAlertClick);
   document.body.removeEventListener('keydown', onErrorAlertEscKeydown);
 }
