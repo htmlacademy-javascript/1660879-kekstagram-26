@@ -7,12 +7,8 @@ import { setUserFormSubmit } from './form-validation.js';
 
 const filterBar = document.querySelector('.img-filters');
 
-export let photoData;
-
-
 const onSuccessGet = (data) => {
   renderAllPhotos(data);
-  photoData = data;
   filterBar.classList.remove('img-filters--inactive');
 };
 

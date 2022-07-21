@@ -1,4 +1,4 @@
-import { photoData } from './main.js';
+import { getData } from './api.js';
 import { getUniqElements, debounce } from './util.js';
 import { RANDOM_PHOTOS_COUNT } from './constants.js';
 
@@ -8,6 +8,12 @@ const picturesBlock = document.querySelector('.pictures');
 const defaultButton = document.querySelector('#filter-default');
 const randomButton = document.querySelector('#filter-random');
 const discussedButton = document.querySelector('#filter-discussed');
+let photoData;
+
+
+getData((data) => {
+  photoData = data;
+});
 
 
 const comparePhotos = (photoA, photoB) => photoB.comments.length - photoA.comments.length;

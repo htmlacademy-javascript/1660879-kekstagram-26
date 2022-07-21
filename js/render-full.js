@@ -1,4 +1,4 @@
-import { photoData } from './main.js';
+import { getData } from './api.js';
 import { INITIAL_COMMENTS_NUMBER } from './constants.js';
 
 const fullImageWindow = document.querySelector('.big-picture');
@@ -9,6 +9,12 @@ const socialCommentsLoader = fullImageWindow.querySelector('.comments-loader');
 
 let findedObject = {};
 let counter = INITIAL_COMMENTS_NUMBER;
+let photoData;
+
+
+getData((data) => {
+  photoData = data;
+});
 
 
 const addSocialCounters = (obj) => {
