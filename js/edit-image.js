@@ -34,7 +34,7 @@ export const setDefaultScale = () => {
 };
 
 
-const addScale = () => {
+const onScaleBiggerButtonClick = () => {
   if (scaleAmount < MAX_SCALE_AMOUNT) {
     scaleAmount += 25;
   }
@@ -44,7 +44,7 @@ const addScale = () => {
 };
 
 
-const removeScale = () => {
+const onScaleSmallerButtonClick = () => {
   if (scaleAmount > MIN_SCALE_AMOUNT) {
     scaleAmount -= 25;
   }
@@ -54,9 +54,9 @@ const removeScale = () => {
 };
 
 
-scaleSmallerButton.addEventListener('click', removeScale);
+scaleSmallerButton.addEventListener('click', onScaleSmallerButtonClick);
 
-scaleBiggerButton.addEventListener('click', addScale);
+scaleBiggerButton.addEventListener('click', onScaleBiggerButtonClick);
 
 
 const setChromeEffect = () => {

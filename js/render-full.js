@@ -58,7 +58,7 @@ export const renderSocialComments = () => {
 };
 
 
-export const renderNewComments = () => {
+export const onSocialCommentsLoaderClick = () => {
   counter +=5;
   renderSocialComments();
 };
