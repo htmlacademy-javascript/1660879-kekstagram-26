@@ -10,7 +10,6 @@ const randomButton = document.querySelector('#filter-random');
 const discussedButton = document.querySelector('#filter-discussed');
 let photoData;
 
-
 getData((data) => {
   photoData = data;
 });

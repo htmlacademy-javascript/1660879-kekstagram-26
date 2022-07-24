@@ -6,6 +6,7 @@ const MIN_SCALE_AMOUNT = 25;
 const MAX_SCALE_AMOUNT = 100;
 const ALERT_SHOW_TIME = 5000;
 const RANDOM_PHOTOS_COUNT = 10;
+const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
 
 export {
   COMMENT_LENGTH,
@@ -15,5 +16,6 @@ export {
   MIN_SCALE_AMOUNT,
   MAX_SCALE_AMOUNT,
   ALERT_SHOW_TIME,
-  RANDOM_PHOTOS_COUNT
+  RANDOM_PHOTOS_COUNT,
+  FILE_TYPES
 };
