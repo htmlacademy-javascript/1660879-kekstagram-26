@@ -9,12 +9,6 @@ const socialCommentsLoader = fullImageWindow.querySelector('.comments-loader');
 
 let findedObject = {};
 let counter = INITIAL_COMMENTS_NUMBER;
-let photoData;
-
-
-getData((data) => {
-  photoData = data;
-});
 
 
 const addSocialCounters = (obj) => {
@@ -24,6 +18,10 @@ const addSocialCounters = (obj) => {
 
 
 export const renderFullImage = (evt) => {
+  let photoData;
+  getData((data) => {
+    photoData = data;
+  });
   findedObject = photoData.find((item) => evt.target.src.includes(item.url));
   fullImage.src = evt.target.src;
   fullImage.alt = evt.target.alt;

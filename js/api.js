@@ -1,8 +1,18 @@
+let cache = [];
+
+
 export const getData = (onSuccess, onFail) => {
-  fetch('https://26.javascript.pages.academy/kekstagram/data')
-    .then((response) => response.json())
-    .then(onSuccess)
-    .catch(onFail);
+  if (cache.length > 0) {
+    onSuccess(cache);
+  } else {
+    fetch('https://26.javascript.pages.academy/kekstagram/data')
+      .then((response) => response.json())
+      .then((data) => {
+        cache = data;
+        onSuccess(cache);
+      })
+      .catch(onFail);
+  }
 };
 
 

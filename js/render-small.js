@@ -8,11 +8,6 @@ const picturesBlock = document.querySelector('.pictures');
 const defaultButton = document.querySelector('#filter-default');
 const randomButton = document.querySelector('#filter-random');
 const discussedButton = document.querySelector('#filter-discussed');
-let photoData;
-
-getData((data) => {
-  photoData = data;
-});
 
 
 const comparePhotos = (photoA, photoB) => photoB.comments.length - photoA.comments.length;
@@ -77,7 +72,7 @@ const onDefaultButtonClick = (cb) => {
 };
 
 onDefaultButtonClick(debounce(
-  () => renderAllPhotos(photoData)
+  () => getData((data) => renderAllPhotos(data))
 ));
 
 
@@ -91,7 +86,7 @@ const onRandomButtonClick = (cb) => {
 };
 
 onRandomButtonClick(debounce(
-  () => renderRandomPhotos(photoData)
+  () => getData((data) => renderRandomPhotos(data))
 ));
 
 
@@ -105,5 +100,5 @@ const onDiscussedButtonClick = (cb) => {
 };
 
 onDiscussedButtonClick(debounce(
-  () => renderDiscussedPhotos(photoData)
+  () => getData((data) => renderDiscussedPhotos(data))
 ));
