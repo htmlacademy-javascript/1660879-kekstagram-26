@@ -1,5 +1,5 @@
 import { getData } from './api.js';
-import { INITIAL_COMMENTS_NUMBER } from './constants.js';
+import { INITIAL_COMMENTS_NUMBER, NEW_COMMENTS_RENDER_NUMBER } from './constants.js';
 
 const fullImageWindow = document.querySelector('.big-picture');
 const fullImage = fullImageWindow.querySelector('.big-picture__img').querySelector('img');
@@ -31,7 +31,7 @@ export const renderFullImage = (evt) => {
 
 
 const checkCommentsCount = () => {
-  if (findedObject.comments.length <= 5 || counter >= findedObject.comments.length) {
+  if (findedObject.comments.length <= INITIAL_COMMENTS_NUMBER || counter >= findedObject.comments.length) {
     commentsCountOnPage.textContent = `${findedObject.comments.length} из `;
     socialCommentsLoader.classList.add('hidden');
   } else {
@@ -59,7 +59,7 @@ export const renderSocialComments = () => {
 
 
 export const onSocialCommentsLoaderClick = () => {
-  counter +=5;
+  counter += NEW_COMMENTS_RENDER_NUMBER;
   renderSocialComments();
 };
 
