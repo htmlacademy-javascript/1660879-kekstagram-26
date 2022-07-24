@@ -8,11 +8,10 @@ import { ALERT_SHOW_TIME } from './constants.js';
 export const getRandomIntInclusive = (min, max) => {
   if (min < 0 || max < 0 || max <= min) {
     return -1;
-  } else {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
 // Функция для проверки максимальной длины строки.
