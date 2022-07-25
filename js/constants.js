@@ -11,6 +11,7 @@ const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
 const GET_URL = 'https://26.javascript.pages.academy/kekstagram/data';
 const POST_URL = 'https://26.javascript.pages.academy/kekstagram';
 
+
 export {
   COMMENT_LENGTH,
   HASH_TAG_REGULAR_EXPRESSION,
