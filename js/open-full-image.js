@@ -1,5 +1,5 @@
 import { isEscapeKey } from './util.js';
-import { renderFullImage, renderSocialComments, clearCounter, renderNewComments } from './render-full.js';
+import { renderFullImage, renderSocialComments, clearCounter, onSocialCommentsLoaderClick } from './render-full.js';
 
 const fullImageWindow = document.querySelector('.big-picture');
 const cancelButton = fullImageWindow.querySelector('.cancel');
@@ -22,7 +22,7 @@ const openFullImage = () => {
   document.addEventListener('keydown', onImageEscKeydown);
 
   socialCommentsLoader.classList.remove('hidden');
-  socialCommentsLoader.addEventListener ('click', renderNewComments);
+  socialCommentsLoader.addEventListener ('click', onSocialCommentsLoaderClick);
 };
 
 
@@ -30,7 +30,7 @@ function closeFullImage () {
   fullImageWindow.classList.add('hidden');
   document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', onImageEscKeydown);
-  socialCommentsLoader.removeEventListener('click', renderNewComments);
+  socialCommentsLoader.removeEventListener('click', onSocialCommentsLoaderClick);
   clearCounter();
 }
 

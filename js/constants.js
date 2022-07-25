@@ -1,21 +1,28 @@
 const COMMENT_LENGTH = 140;
 const HASH_TAG_REGULAR_EXPRESSION = /^#[A-Za-zА-Яа-яЁё0-9]{1,19}$/;
 const INITIAL_COMMENTS_NUMBER = 5;
+const NEW_COMMENTS_RENDER_NUMBER = 5;
 const DEFAULT_SCALE_AMOUNT = 100;
 const MIN_SCALE_AMOUNT = 25;
 const MAX_SCALE_AMOUNT = 100;
 const ALERT_SHOW_TIME = 5000;
 const RANDOM_PHOTOS_COUNT = 10;
 const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
+const GET_URL = 'https://26.javascript.pages.academy/kekstagram/data';
+const POST_URL = 'https://26.javascript.pages.academy/kekstagram';
+
 
 export {
   COMMENT_LENGTH,
   HASH_TAG_REGULAR_EXPRESSION,
   INITIAL_COMMENTS_NUMBER,
+  NEW_COMMENTS_RENDER_NUMBER,
   DEFAULT_SCALE_AMOUNT,
   MIN_SCALE_AMOUNT,
   MAX_SCALE_AMOUNT,
   ALERT_SHOW_TIME,
   RANDOM_PHOTOS_COUNT,
-  FILE_TYPES
+  FILE_TYPES,
+  GET_URL,
+  POST_URL
 };

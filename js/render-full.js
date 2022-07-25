@@ -1,5 +1,5 @@
 import { getData } from './api.js';
-import { INITIAL_COMMENTS_NUMBER } from './constants.js';
+import { INITIAL_COMMENTS_NUMBER, NEW_COMMENTS_RENDER_NUMBER } from './constants.js';
 
 const fullImageWindow = document.querySelector('.big-picture');
 const fullImage = fullImageWindow.querySelector('.big-picture__img').querySelector('img');
@@ -9,12 +9,6 @@ const socialCommentsLoader = fullImageWindow.querySelector('.comments-loader');
 
 let findedObject = {};
 let counter = INITIAL_COMMENTS_NUMBER;
-let photoData;
-
-
-getData((data) => {
-  photoData = data;
-});
 
 
 const addSocialCounters = (obj) => {
@@ -24,6 +18,10 @@ const addSocialCounters = (obj) => {
 
 
 export const renderFullImage = (evt) => {
+  let photoData;
+  getData((data) => {
+    photoData = data;
+  });
   findedObject = photoData.find((item) => evt.target.src.includes(item.url));
   fullImage.src = evt.target.src;
   fullImage.alt = evt.target.alt;
@@ -33,7 +31,7 @@ export const renderFullImage = (evt) => {
 
 
 const checkCommentsCount = () => {
-  if (findedObject.comments.length <= 5 || counter >= findedObject.comments.length) {
+  if (findedObject.comments.length <= INITIAL_COMMENTS_NUMBER || counter >= findedObject.comments.length) {
     commentsCountOnPage.textContent = `${findedObject.comments.length} из `;
     socialCommentsLoader.classList.add('hidden');
   } else {
@@ -50,18 +48,18 @@ export const renderSocialComments = () => {
   socialComments.innerHTML = '';
   const fragment = document.createDocumentFragment();
 
-  for (let i = 0; i < commentsPart.length; i++) {
+  commentsPart.forEach((element) => {
     const li = document.createElement('li');
     li.classList.add('social__comment');
-    li.insertAdjacentHTML('beforeend', `<img class="social__picture" src ="${  commentsPart[i].avatar  }" alt =" ${  commentsPart[i].name  }" width="35" height="35"><p class="social__text">${ commentsPart[i].message  }</p>`);
+    li.insertAdjacentHTML('beforeend', `<img class="social__picture" src ="${  element.avatar  }" alt =" ${  element.name  }" width="35" height="35"><p class="social__text">${ element.message  }</p>`);
     fragment.appendChild(li);
-  }
+  });
   socialComments.appendChild(fragment);
 };
 
 
-export const renderNewComments = () => {
-  counter +=5;
+export const onSocialCommentsLoaderClick = () => {
+  counter += NEW_COMMENTS_RENDER_NUMBER;
   renderSocialComments();
 };
 

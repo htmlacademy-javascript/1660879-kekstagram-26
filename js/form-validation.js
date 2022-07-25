@@ -18,13 +18,13 @@ export const pristine = new Pristine(form, {
 
 
 const validateHashtag = (inputValue) => {
-  const arr = inputValue.split(' ');
+  const arr = inputValue.trim().split(/\s+/);
   return arr.every((element) => HASH_TAG_REGULAR_EXPRESSION.test(element)) || arr[0] === '';
 };
 
-//в будущем надо добавить проверку на лишние пробелы, т.к. пробелы валидатор считает хэштегами
+
 const validateHashtagDuplicates = (inputValue) => {
-  const arr = inputValue.split(' ');
+  const arr = inputValue.trim().split(/\s+/);
   const valuesObj = {};
 
   for (let i = 0; i < arr.length; i++) {
@@ -42,7 +42,7 @@ const validateHashtagDuplicates = (inputValue) => {
 
 
 const validateHashtagsLength = (inputValue) => {
-  const arr = inputValue.split(' ');
+  const arr = inputValue.trim().split(/\s+/);
   return arr.length <= 5;
 };
 

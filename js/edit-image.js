@@ -34,7 +34,7 @@ export const setDefaultScale = () => {
 };
 
 
-const addScale = () => {
+const onScaleBiggerButtonClick = () => {
   if (scaleAmount < MAX_SCALE_AMOUNT) {
     scaleAmount += 25;
   }
@@ -44,7 +44,7 @@ const addScale = () => {
 };
 
 
-const removeScale = () => {
+const onScaleSmallerButtonClick = () => {
   if (scaleAmount > MIN_SCALE_AMOUNT) {
     scaleAmount -= 25;
   }
@@ -54,9 +54,9 @@ const removeScale = () => {
 };
 
 
-scaleSmallerButton.addEventListener('click', removeScale);
+scaleSmallerButton.addEventListener('click', onScaleSmallerButtonClick);
 
-scaleBiggerButton.addEventListener('click', addScale);
+scaleBiggerButton.addEventListener('click', onScaleBiggerButtonClick);
 
 
 const setChromeEffect = () => {
@@ -125,10 +125,10 @@ const setHeatEffect = () => {
 };
 
 
-for (const effectButton of effectButtons) {
-  effectButton.addEventListener('click', () => {
+effectButtons.forEach((element) => {
+  element.addEventListener('click', () => {
 
-    switch (effectButton.value) {
+    switch (element.value) {
 
       case 'none' :
         hideSlider(); break;
@@ -150,9 +150,9 @@ for (const effectButton of effectButtons) {
     }
 
     setNoEffect();
-    imagePreview.classList.add(`effects__preview--${effectButton.value}`);
+    imagePreview.classList.add(`effects__preview--${element.value}`);
   });
-}
+});
 
 
 noUiSlider.create(sliderElement, {
