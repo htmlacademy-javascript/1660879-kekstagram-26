@@ -48,12 +48,12 @@ export const renderSocialComments = () => {
   socialComments.innerHTML = '';
   const fragment = document.createDocumentFragment();
 
-  for (let i = 0; i < commentsPart.length; i++) {
+  commentsPart.forEach((element) => {
     const li = document.createElement('li');
     li.classList.add('social__comment');
-    li.insertAdjacentHTML('beforeend', `<img class="social__picture" src ="${  commentsPart[i].avatar  }" alt =" ${  commentsPart[i].name  }" width="35" height="35"><p class="social__text">${ commentsPart[i].message  }</p>`);
+    li.insertAdjacentHTML('beforeend', `<img class="social__picture" src ="${  element.avatar  }" alt =" ${  element.name  }" width="35" height="35"><p class="social__text">${ element.message  }</p>`);
     fragment.appendChild(li);
-  }
+  });
   socialComments.appendChild(fragment);
 };
 

@@ -17,18 +17,6 @@ export const getRandomIntInclusive = (min, max) => {
 // Функция для проверки максимальной длины строки.
 export const checkMaxLength = (string, maxLength) => string.length <= maxLength;
 
-// //Функция для создания массива от 1 до max
-// export const getOrderedArray = (max) => {
-//   const orderedArray = [];
-//   for (let i = 1; i <= max; i++) {
-//     orderedArray.push(i);
-//   }
-//   return orderedArray;
-// };
-
-// //Функция для выбора случайного числа из созданного массива и "выбрасывания" этого числа из него
-// export const getUniqId = (arr) => Number(arr.splice(getRandomIntInclusive(1, arr.length - 1), 1));
-
 //Функция, проверяющая нажат ли Escape
 export const isEscapeKey = (evt) => evt.code === 'Escape' || evt.code === 'Esc';
 
@@ -71,7 +59,7 @@ export const debounce = (callback, timeoutDelay = 500) => {
   };
 };
 
-//Функция для выбора случайного кол-ва (amount) элементов из массива (arr)
+// Функция для выбора случайного кол-ва (amount) элементов из массива (arr)
 export const getUniqElements = (arr, amount) => {
   const elements = [];
   const arrCopy = arr.slice();

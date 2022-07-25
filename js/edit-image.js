@@ -125,10 +125,10 @@ const setHeatEffect = () => {
 };
 
 
-for (const effectButton of effectButtons) {
-  effectButton.addEventListener('click', () => {
+effectButtons.forEach((element) => {
+  element.addEventListener('click', () => {
 
-    switch (effectButton.value) {
+    switch (element.value) {
 
       case 'none' :
         hideSlider(); break;
@@ -150,9 +150,9 @@ for (const effectButton of effectButtons) {
     }
 
     setNoEffect();
-    imagePreview.classList.add(`effects__preview--${effectButton.value}`);
+    imagePreview.classList.add(`effects__preview--${element.value}`);
   });
-}
+});
 
 
 noUiSlider.create(sliderElement, {
